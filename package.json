@@ -1,0 +1,36 @@
+{
+  "name": "explore-world",
+  "version": "1.0.0",
+  "description": "This project showcases beautiful places around the world and allows users to add their own favorite places and see other users' contributions.",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ankurbansal15/Explore-World.git"
+  },
+  "keywords": [
+    "explore",
+    "world",
+    "project",
+    "beautiful",
+    "places",
+    "add",
+    "favorite",
+    "users",
+    "contributions",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "Express.js",
+    "EJS",
+    "Node.js"
+  ],
+  "author": "Ankur Bansal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ankurbansal15/Explore-World/issues"
+  },
+  "homepage": "https://github.com/ankurbansal15/Explore-World#readme"
+}
