@@ -2,9 +2,11 @@
   "name": "explore-world",
   "version": "1.0.0",
   "description": "This project showcases beautiful places around the world and allows users to add their own favorite places and see other users' contributions.",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "dev"
+    "test": "This feature will implement in future",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -32,5 +34,11 @@
   "bugs": {
     "url": "https://github.com/ankurbansal15/Explore-World/issues"
   },
-  "homepage": "https://github.com/ankurbansal15/Explore-World#readme"
+  "homepage": "https://github.com/ankurbansal15/Explore-World#readme",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.8.2"
+  }
 }
