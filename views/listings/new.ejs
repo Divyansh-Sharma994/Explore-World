@@ -13,6 +13,7 @@
         <div class="valid-feedback">
           Title is valid.
         </div>
+      </div>
         <div class="mb-3">
           <label for="description" class="form-label">Description</label>
           <textarea name="listing[description]" class="form-control input-border" required></textarea>
@@ -30,7 +31,7 @@
         <div class="row">
           <div class="mb-3 col-md-4">
             <label for="price" class="form-label">Price</label>
-            <input name="listing[price]" class="form-control input-border" required />
+            <input name="listing[price]" type="number" class="form-control input-border" required />
             <div class="invalid-feedback">
               Price should be valid.
             </div>
