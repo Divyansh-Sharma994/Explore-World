@@ -7,10 +7,15 @@ const engine = require("ejs-mate");
 const ExpressError = require("./utils/ExpressError");
 const cookieParser = require("cookie-parser");
 const MONGO_URL = "mongodb://127.0.0.1:27017/explore-world";
-const listings = require("./routes/listing.js");
-const reviews = require("./routes/review.js");
+const listingsRouter = require("./routes/listing.js");
+const reviewsRouter = require("./routes/review.js");
+const userRouter = require("./routes/user.js");
 const session = require("express-session");
 const flash = require("connect-flash");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user.js");
+
 main()
   .then(() => {
     console.log("connected to DB");
@@ -30,16 +35,15 @@ app.use(methodOverride("_method"));
 app.engine("ejs", engine);
 app.use(express.static(path.join(__dirname, "public")));
 
-
 const sessionOptions = {
-  secret:"mysupersecretcode",
-  resave:false,
-  saveUninitialized:true,
-  cookie:{
-    expires:Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge:1000 * 60 * 60 * 24 * 7,
-    httpOnly:true,
-  }
+  secret: "mysupersecretcode",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+    maxAge: 1000 * 60 * 60 * 24 * 7,
+    httpOnly: true,
+  },
 };
 
 app.get("/", (req, res) => {
@@ -48,16 +52,29 @@ app.get("/", (req, res) => {
 
 app.use(session(sessionOptions));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currentUser = req.user;
   console.log(res.locals.success);
   next();
 });
 
-app.use("/listings", listings);
-app.use("/listings/:id/reviews", reviews);
+app.get("/demoUser", async (req, res) => {
+  const fakeUser = new User({ email: "ankur@gmail.com", username: "ankur" });
+  let registerUser = await User.register(fakeUser, "ankur");
+  res.send(registerUser);
+});
+
+app.use("/listings", listingsRouter);
+app.use("/listings/:id/reviews", reviewsRouter);
+app.use("/", userRouter);
 
 app.all("*", (req, res, next) => {
   next(new ExpressError("Page Not Found!", 404));
