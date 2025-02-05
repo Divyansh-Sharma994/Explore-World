@@ -88,6 +88,6 @@ app.use((err, req, res) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-app.listen(8080, () => {
+app.listen(process.env.PORT, () => {
   console.log("server is listening to port 8080");
 });
