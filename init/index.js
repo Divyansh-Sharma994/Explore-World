@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const initData = require("./data.js");
 const Listing = require("../models/listing.js");
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/explore-world";
+const MONGO_URL = process.env.MONGO_URL;
 
 main()
   .then(() => {
@@ -18,7 +18,7 @@ async function main() {
 
 const initDB = async () => {
   await Listing.deleteMany({});
-  initData.data = initData.data.map((el) => ({ ...el, owner: "6746b18a0901fe5f87636f4f" }));
+  initData.data = initData.data.map((el) => ({ ...el, owner: "67a3b9225a90ec97e215e40b" }));
   await Listing.insertMany(initData.data);
   console.log("data was initialized");
 };

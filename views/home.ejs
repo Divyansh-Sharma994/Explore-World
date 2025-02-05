@@ -1,0 +1,112 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/css/home.css">
+<div class="landing-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <h1 class="hero-heading">Discover the World with Explore World</h1>
+        <p class="tagline">Explore, rate, and share your favorite places around the globe. Join a community of travelers and adventurers!</p>
+        <a href="/signup" class="btn btn-dark normal-btn">Join Now</a>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="how-it-works">
+        <h2>How It Works</h2>
+        <div class="steps-container">
+            <div class="step">
+                <i class="fas fa-search"></i>
+                <h3>Search</h3>
+                <p>Find amazing destinations added by our global community.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-star"></i>
+                <h3>Rate & Review</h3>
+                <p>Share your experiences by rating and reviewing places.</p>
+            </div>
+            <div class="step">
+                <i class="fas fa-plus"></i>
+                <h3>Add Places</h3>
+                <p>Contribute by adding new locations for others to explore.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured Destinations Section -->
+    <div class="featured-destinations">
+        <h2>Featured Destinations</h2>
+        <div class="destination-grid">
+            <% let count = 0; %>
+            <% for(let listing of allListings){ %>
+                <%count++; %>
+                <% if(count > 3) break; %>
+            <div class="destination-card">
+                <img src="<%=listing.image.url%>" alt="Paris">
+                <h3><%=listing.title%></h3>
+                <p><%=listing.description%></p>
+                <a href="/listings/<%=listing._id%>" class="btn btn-dark normal-btn">Explore</a>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="why-choose-us">
+        <h2>Why Choose Explore World?</h2>
+        <div class="reasons-container">
+            <div class="reason">
+                <i class="fas fa-globe"></i>
+                <h3>Global Community</h3>
+                <p>Connect with travelers from around the world and discover hidden gems.</p>
+            </div>
+            <div class="reason">
+                <i class="fas fa-edit"></i>
+                <h3>Full Control</h3>
+                <p>Add, edit, or delete your contributions and manage your reviews.</p>
+            </div>
+            <div class="reason">
+                <i class="fas fa-share-alt"></i>
+                <h3>Share Experiences</h3>
+                <p>Share your travel stories and help others plan their trips.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Testimonials Section -->
+    <div class="testimonials">
+        <h2>What Our Users Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <p>"Explore World helped me discover hidden gems I never knew existed. Highly recommend!"</p>
+                <h4>- Sarah L.</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"The ability to add and manage my own places made my travel planning so much easier."</p>
+                <h4>- John D.</h4>
+            </div>
+            <div class="testimonial-card">
+                <p>"I love reading reviews from other travelers. It feels like a global community!"</p>
+                <h4>- Maria G.</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call-to-Action Section -->
+    <div class="cta-section background-card-section">
+        <h2>Ready to Explore?</h2>
+        <p>Join Explore World today and start discovering, sharing, and rating amazing places around the globe.</p>
+        <a href="/signup" class="btn btn-dark normal-btn">Get Started</a>
+    </div>
+
+    <!-- Add a Place Section -->
+    <div class="add-place-section background-card-section">
+        <h2>Have a Hidden Gem to Share?</h2>
+        <p>Add your favorite places to our global map and help others discover them too.</p>
+        <a href="/listings/new" class="btn btn-dark normal-btn">Add a New Place</a>
+    </div>
+
+    <!-- Explore More Section -->
+    <div class="explore-more background-card-section">
+        <h2>Explore More</h2>
+        <p>Discover new destinations, read reviews, and plan your next adventure with Explore World.</p>
+        <a href="/listings" class="btn btn-dark normal-btn">Browse Destinations</a>
+    </div>
+</div>

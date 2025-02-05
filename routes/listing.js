@@ -16,7 +16,7 @@ router.route("/")
 
 router.route("/:id")
     .get(showListing)
-    .put(isLoggedIn, isOwner, validateListing, editListing)
+    .put(isLoggedIn, isOwner,upload.single("listing[image]"), validateListing, editListing)
     .delete(isLoggedIn, isOwner, deleteListing);
 
 
