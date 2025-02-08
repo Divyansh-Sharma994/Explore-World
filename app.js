@@ -17,7 +17,8 @@ const wrapAsync = require("./utils/wrapAsync.js");
 require("dotenv").config();
 const Listing = require("./models/listing.js");
 const MONGO_URL = process.env.MONGO_URL;
-
+const {RedisStore} = require("connect-redis");
+const redisClient = require("./redisClient");
 main()
   .then(() => {
     console.log("connected to DB");
@@ -38,13 +39,14 @@ app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname, "public")));
 
 const sessionOptions = {
+  store: new RedisStore({ client: redisClient }),
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
-    expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
-    maxAge: 1000 * 60 * 60 * 24 * 7,
+    secure: false,
     httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24,
   },
 };
 
